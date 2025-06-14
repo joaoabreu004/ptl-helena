@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helena Eliodorio</title>
+    <link rel="icon" href="/imagens/logo.png" type="image/png">
+    <!-- Importa as novas fontes do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Tailwind CSS - Adicionado para utilidade, embora muitos estilos sejam sobrescritos pelo CSS customizado -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Variáveis de cores baseadas no seu logo */
+        :root {
+            --cor-clara: #F9F5EC; /* Um bege muito claro, harmoniza com os tons do logo */
+            --cor-media-clara: #B08B5C; /* O dourado/bege do logo (letra E) */
+            --cor-media-escura: #7C5D4B; /* Um marrom médio escuro, para textos e detalhes */
+            --cor-escura: #4A3121; /* O marrom profundo do logo (letra H) */
+        }
+
+        /* Animação de flutuação */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Estilos globais do Body */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cor-clara);
+            color: #333;
+            text-align: center; /* Centraliza o conteúdo principal */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Estilos do Cabeçalho */
+        header {
+            background-color: var(--cor-escura);
+            color: var(--cor-clara);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Estilos para o logo no cabeçalho */
+        header .header-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centraliza a imagem dentro do círculo */
+            width: 50px; /* Define a largura para o círculo */
+            height: 50px; /* Define a altura para o círculo */
+            border-radius: 50%; /* Torna o contêiner circular */
+            background-color: rgba(255, 255, 255, 0.1); /* Um leve fundo para o círculo, se desejar */
+            overflow: hidden; /* Garante que o logo não vaze do círculo */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Uma borda sutil */
+            transition: background-color 0.3s ease;
+        }
+
+        header .header-logo:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        header .header-logo img {
+            height: 80%; /* A imagem preenche 80% da altura do contêiner circular */
+            width: 80%; /* A imagem preenche 80% da largura do contêiner circular */
+            object-fit: contain; /* Mantém a proporção do logo */
+        }
+
+
+        header .main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        header .main-nav li {
+            margin-left: 1.5rem;
+        }
+
+        header .main-nav a {
+            color: var(--cor-clara);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+            padding-bottom: 2px;
+            border-bottom: 2px solid transparent;
+
+            &:hover {
+                color: var(--cor-media-clara); /* Usa a cor dourada/bege da paleta no hover */
+                border-bottom-color: var(--cor-media-clara);
+            }
+
+            &:active {
+                color: var(--cor-media-escura); /* Usa um tom mais escuro no clique */
+                border-bottom-color: var(--cor-media-escura);
+            }
+        }
+
+        /* Estilos para o Main e Footer */
+        main {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            flex-grow: 1;
+        }
+
+        footer {
+            background-color: var(--cor-escura); /* Cor de fundo escura do logo para o footer */
+            color: var(--cor-clara); /* Texto claro para contrastar */
+            padding: 2rem 0; /* Mais padding para destaque */
+            margin-top: 3rem;
+            font-size: 0.9rem;
+            display: flex; /* Para centralizar o conteúdo */
+            flex-direction: column; /* Conteúdo em coluna (logo em cima, texto embaixo) */
+            align-items: center; /* Centraliza horizontalmente */
+            justify-content: center; /* Centraliza verticalmente */
+            gap: 1rem; /* Espaçamento entre logo e texto */
+        }
+
+        .footer-logo {
+            width: 60px; /* Um pouco maior que o do header */
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo img {
+            height: 90%; /* A imagem preenche a maioria do contêiner */
+            width: 90%;
+            object-fit: contain;
+        }
+
+
+        /* Seção Hero com Imagem e Texto */
+        .hero-with-image {
+            display: flex;
+            flex-direction: row; /* Layout lado a lado */
+            align-items: center;
+            justify-content: center;
+            padding: 80px 2rem;
+            width: 100%;
+            background-color: var(--cor-clara);
+            text-align: left;
+            gap: 4rem;
+        }
+
+        .profile-image-section {
+            flex-shrink: 0;
+        }
+
+        .profile-image-section img {
+            width: 300px; /* Largura para a imagem retangular */
+            height: 380px; /* Altura para a imagem retangular */
+            border-radius: 0.5rem;
+            object-fit: cover;
+            border: 5px solid var(--cor-media-clara); /* Borda com o tom dourado/bege */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-section {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        .hero-section .hero-content h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--cor-escura); /* Cor marrom profundo */
+            font-weight: 700;
+        }
+
+        .hero-section .hero-content p.lead {
+            font-size: 1.2rem;
+            color: var(--cor-media-escura); /* Cor marrom médio escuro */
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-section .hero-content .button {
+            display: inline-block;
+            background-color: var(--cor-escura); /* Cor marrom profundo */
+            color: var(--cor-clara); /* Cor clara para o texto do botão */
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 500;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .hero-section .hero-content .button:hover {
+            background-color: var(--cor-media-escura); /* Marrom médio escuro no hover */
+            transform: scale(1.02);
+        }
+
+        /* Seção de Formação */
+        .education-section {
+            background-color: var(--cor-media-clara); /* Cor dourada/bege para o fundo */
+            padding: 60px 2rem;
+            width: 100%;
+            text-align: center;
+            color: var(--cor-escura); /* Texto escuro para contrastar */
+        }
+
+        .education-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .education-content h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--cor-escura); /* Cor marrom profundo */
+        }
+
+        .education-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .education-item img {
+            width: 120px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .education-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--cor-escura); /* Cor marrom profundo */
+        }
+
+        .education-item p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--cor-escura); /* Cor marrom profundo */
+        }
+
+        .education-item .dates {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--cor-escura); /* Cor marrom profundo */
+            opacity: 0.8;
+        }
+
+        /* Seção de Experiência */
+        .experience-section {
+            background-color: var(--cor-clara); /* Alternando para a cor de fundo clara */
+            padding: 60px 2rem;
+            width: 100%;
+            text-align: center;
+            color: var(--cor-escura);
+        }
+
+        .experience-section h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 2.5rem;
+            color: var(--cor-escura); /* Cor marrom profundo */
+        }
+
+        .experience-list {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem; /* Espaçamento entre os itens de experiência */
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            display: flex;
+            flex-direction: row; /* Layout em linha para logo e detalhes */
+            align-items: flex-start; /* Alinha o topo dos itens */
+            gap: 1.5rem; /* Espaçamento entre logo e detalhes */
+            text-align: left; /* Alinhamento do texto dentro do item */
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            background-color: #fff; /* Fundo branco para os itens */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); /* Sombra suave para os itens */
+        }
+
+        .experience-item img {
+            width: 80px; /* Tamanho do logo da empresa */
+            height: 80px;
+            object-fit: contain; /* Para que o logo caiba bem */
+            border-radius: 0.5rem;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0; /* Impede o logo de encolher */
+            margin-bottom: 0; /* Remove margem inferior para alinhamento */
+        }
+
+        .experience-details {
+            flex-grow: 1; /* Permite que os detalhes ocupem o espaço restante */
+        }
+
+        .experience-details h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--cor-escura); /* Cor marrom profundo */
+        }
+
+        .experience-details .company-name {
+            font-size: 1.1rem;
+            color: var(--cor-media-escura); /* Cor marrom médio escuro */
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+
+        .experience-details .duration,
+        .experience-details .location {
+            font-size: 0.95rem;
+            color: var(--cor-media-escura); /* Cor marrom médio escuro */
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-details .description {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #555; /* Um cinza neutro para a descrição */
+            margin-top: 1rem;
+        }
+
+        /* Seção de Downloads */
+        .downloads-section {
+            background-color: var(--cor-media-escura); /* Cor da paleta */
+            padding: 60px 2rem;
+            width: 100%;
+            text-align: center;
+            color: var(--cor-clara); /* Texto claro para contrastar */
+        }
+
+        .downloads-section h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 2.5rem;
+            color: var(--cor-clara);
+        }
+
+        .downloads-list {
+            display: flex;
+            flex-direction: column; /* Coluna por padrão, para mobile */
+            gap: 2.5rem; /* Espaçamento entre os itens de download */
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .download-item {
+            background-color: var(--cor-escura); /* Fundo escuro para o item */
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra mais proeminente */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .download-item .download-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--cor-clara); /* Texto claro */
+        }
+
+        .download-item .download-description {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: var(--cor-clara);
+            opacity: 0.9;
+        }
+
+        .download-item .button.download-button {
+            background-color: var(--cor-media-clara); /* Botão com a cor dourada/bege */
+            color: var(--cor-escura); /* Texto do botão escuro */
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-flex; /* Para alinhar o ícone e o texto */
+            align-items: center;
+            gap: 0.5rem; /* Espaçamento entre ícone e texto */
+        }
+
+        .download-item .button.download-button:hover {
+            background-color: #9b7a4a; /* Um tom um pouco mais escuro para o hover */
+            transform: translateY(-2px);
+        }
+
+        /* Seção de Contato */
+        .contact-section {
+            background-color: var(--cor-clara); /* Alternando para a cor de fundo clara */
+            padding: 60px 2rem;
+            width: 100%;
+            text-align: center;
+            color: var(--cor-escura);
+        }
+
+        .contact-section h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 2.5rem;
+            color: var(--cor-escura);
+        }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column; /* Coluna por padrão */
+            gap: 2rem; /* Espaçamento entre os itens de contato */
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; /* Espaçamento entre ícone e texto/link */
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            background-color: #fff; /* Fundo branco para os itens */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
+            transition: transform 0.2s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px); /* Efeito de leve elevação no hover */
+        }
+
+        .contact-item .icon {
+            font-size: 2.5rem; /* Tamanho do ícone */
+            color: var(--cor-escura); /* Cor do ícone */
+            flex-shrink: 0; /* Impede que o ícone encolha */
+        }
+
+        .contact-item a {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            color: var(--cor-escura); /* Cor do link */
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            /* text-align: left; Removido para controle na media query */
+            flex-grow: 1; /* Permite que o link ocupe o espaço restante */
+        }
+
+        .contact-item a:hover {
+            color: var(--cor-media-clara); /* Mudar cor no hover para a cor clara */
+            text-decoration: underline;
+        }
+
+        /* Seção de Agradecimento */
+        .gratitude-section {
+            background-color: var(--cor-media-escura); /* Cor da paleta */
+            padding: 80px 2rem; /* Mais padding para destaque */
+            width: 100%;
+            text-align: center;
+            color: var(--cor-clara); /* Texto claro para contraste */
+        }
+
+        .gratitude-section h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.2rem; /* Título maior */
+            margin-bottom: 1.5rem;
+            color: var(--cor-clara);
+        }
+
+        .gratitude-section p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem; /* Texto maior */
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--cor-clara);
+            opacity: 0.9;
+        }
+
+
+        /* Media Queries para responsividade */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                padding: 0 1rem; /* Ajuste de padding em mobile */
+            }
+            header .main-nav ul {
+                margin-top: 1rem;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+                text-align: center; /* Garante que os itens de navegação se centralizem */
+            }
+            header .header-logo {
+                width: 40px; /* Ajusta o tamanho do logo em mobile */
+                height: 40px;
+                margin-bottom: 0.5rem; /* Espaçamento entre logo e nav em mobile */
+            }
+            .hero-with-image {
+                flex-direction: column; /* Volta para layout em coluna em telas menores */
+                gap: 2rem;
+                padding: 40px 1rem;
+            }
+            .profile-image-section img {
+                width: 180px;
+                height: 220px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+            .hero-section .hero-content h1 {
+                font-size: 2.5rem;
+                text-align: center;
+            }
+            .hero-section .hero-content p.lead {
+                font-size: 1rem;
+                text-align: center;
+                padding: 0 0.5rem;
+            }
+            .hero-section .hero-content .button {
+                padding: 12px 25px;
+            }
+            
+            /* Responsividade para as seções */
+            .education-section, .experience-section, .downloads-section, .contact-section, .gratitude-section {
+                padding: 40px 1rem;
+            }
+            .education-content h2, .experience-section h2, .downloads-section h2, .contact-section h2, .gratitude-section h2 {
+                font-size: 2.2rem;
+            }
+            .education-item img {
+                width: 100px;
+            }
+            .education-item h3, .experience-details h3, .downloads-list .download-title {
+                font-size: 1.5rem;
+            }
+            .education-item p, .experience-details .company-name, .experience-details .duration, .experience-details .location, .experience-details .description, .downloads-list .download-description {
+                font-size: 0.95rem;
+            }
+            .experience-list, .downloads-list, .contact-list {
+                gap: 2rem;
+            }
+            .experience-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .experience-item img {
+                margin-bottom: 1rem;
+            }
+            .experience-details h3 {
+                font-size: 1.4rem;
+            }
+            .experience-details .company-name,
+            .experience-details .duration,
+            .experience-details .location,
+            .experience-details .description {
+                font-size: 0.9rem;
+            }
+            .downloads-list .download-item .button.download-button {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+            .contact-item {
+                flex-direction: column; /* Empilha ícone e link em mobile */
+                text-align: center;
+                gap: 0.5rem;
+            }
+            .contact-item .icon {
+                font-size: 2rem;
+            }
+            .contact-item a {
+                font-size: 1.1rem;
+                text-align: center; /* Centraliza o texto do link quando empilhado */
+            }
+            .gratitude-section p {
+                font-size: 1.1rem; /* Texto menor em mobile */
+            }
+        }
+
+        /* Responsividade para layout de múltiplos itens em desktop */
+        @media (min-width: 769px) {
+            .downloads-list {
+                flex-direction: row; /* Volta para linha em telas maiores */
+                justify-content: center;
+                flex-wrap: wrap; /* Permite quebrar linha se houver muitos itens */
+            }
+            .downloads-list .download-item {
+                flex: 1; /* Permite que os itens de download cresçam para ocupar o espaço */
+                min-width: 300px; /* Largura mínima para evitar que fiquem muito pequenos */
+                max-width: 45%; /* Largura máxima para dois itens por linha */
+            }
+            .contact-list {
+                flex-direction: row; /* Volta para linha em telas maiores */
+                justify-content: center;
+                flex-wrap: wrap; /* Permite quebrar linha se houver muitos itens */
+                gap: 2.5rem; /* Espaçamento entre os itens de contato */
+            }
+            .contact-list .contact-item {
+                flex: 1; /* Permite que os itens de contato cresçam */
+                min-width: 280px; /* Largura mínima para itens de contato */
+                max-width: 48%; /* Para 2 colunas */
+                flex-direction: row; /* Mantém ícone e link lado a lado */
+                text-align: left;
+            }
+            .contact-item .icon {
+                font-size: 2.5rem; /* Tamanho original em desktop */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <!-- Div para o logo circular -->
+            <div class="header-logo">
+                <!-- Substitua 'caminho/para/seu-logo-transparente.png' pela URL real do seu logo transparente -->
+                <img src="/imagens/logo.png" alt="Logo Helena Eliodorio">
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#formacao">Formação</a></li>
+                    <li><a href="#experiencia">Experiência</a></li>
+                    <li><a href="#downloads">Downloads</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Seção Hero (sua apresentação principal) -->
+        <section class="hero-with-image">
+            <div class="profile-image-section">
+                <div class="container">
+                    <!-- Substitua esta imagem pelo caminho real da sua foto de perfil -->
+                    <img src="/imagens/helena_imagem.jpg" alt="Foto de Perfil - Helena">
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>Olá, eu sou Helena Eliodorio</h1>
+                        <p class="lead">
+                            Sou uma profissional em formação na área de <strong>Publicidade e Propaganda</strong>,
+                            atualmente cursando Bacharelado na <strong>FAPCOM - Faculdade Paulus de Comunicação</strong>.
+                            Minha paixão por <strong>comunicação e branding</strong> me levou a buscar experiências práticas,
+                            como a minha atual atuação como <strong>Estagiária de Atendimento em Redes Sociais na Eólica - Branding e Inovação</strong>,
+                            onde estou desde abril de 2025. Anteriormente, tive a oportunidade de estagiar na área de
+                            <strong>Comunicação Social na Assembleia Legislativa do Estado de São Paulo</strong>, de abril de 2023 a abril de 2025,
+                            onde pude desenvolver minhas habilidades em um ambiente dinâmico e presencial.
+                            Busco constantemente aprimorar minhas competências em comunicação, incluindo
+                            <strong>comunicação social e oratória</strong>, e possuo conhecimentos em ferramentas como
+                            <strong>Microsoft Word</strong>. Tenho grande interesse em aplicar meus conhecimentos teóricos e práticos
+                            para criar soluções criativas e eficazes no campo da Publicidade e Propaganda.
+                        </p>
+                        <a href="#contato" class="button">Entre em Contato</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Formação -->
+        <section id="formacao" class="education-section">
+            <div class="container">
+                <div class="education-content">
+                    <h2>Minha Formação</h2>
+                    <div class="education-item">
+                        <img src="/imagens/fapcom.jpg" alt="Logo da FAPCOM">
+                        <h3>FAPCOM - Faculdade Paulus de Comunicação</h3>
+                        <p>
+                            Atualmente, estou imersa no universo do <strong>Bacharelado em Publicidade e Propaganda</strong> na FAPCOM.
+                            Neste curso, estou desenvolvendo uma visão estratégica e criativa do mercado, explorando desde
+                            fundamentos de comunicação e marketing até as mais recentes tendências em mídias digitais e
+                            produção de conteúdo. A FAPCOM tem sido um ambiente enriquecedor, que me prepara para
+                            desafios dinâmicos da área, com foco em soluções inovadoras para as demandas do mercado.
+                        </p>
+                        <p class="dates">Ago de 2023 - Jul de 2027</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Experiência -->
+        <section id="experiencia" class="experience-section">
+            <div class="container">
+                <h2>Minha Experiência</h2>
+                <div class="experience-list">
+                    <div class="experience-item">
+                        <img src="/imagens/eólica.jpeg" alt="Logo da Eólica - Branding e Inovação">
+                        <div class="experience-details">
+                            <h3>Estagiária de Atendimento em Redes Sociais</h3>
+                            <p class="company-name">Eólica - Branding e Inovação · Estágio</p>
+                            <p class="duration">abr de 2025 - o momento (3 meses)</p>
+                            <p class="location">São Paulo, São Paulo, Brasil · Remota</p>
+                            <p class="description">
+                                Atuação focada na gestão de interações e relacionamento com o público em diversas plataformas de redes sociais, desenvolvendo estratégias de engajamento e monitoramento da marca. Responsável por identificar tendências e otimizar a presença online da empresa.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="experience-item">
+                        <img src="/imagens/alesp.jpg" alt="Logo da Assembleia Legislativa do Estado de São Paulo">
+                        <div class="experience-details">
+                            <h3>Estagiária de Comunicação Social</h3>
+                            <p class="company-name">Assembleia Legislativa do Estado de São Paulo · Estágio</p>
+                            <p class="duration">abr de 2023 - abr de 2025 (2 anos 1 mês)</p>
+                            <p class="location">São Paulo, Brasil · Presencial</p>
+                            <p class="description">
+                                Desenvolvimento de habilidades em comunicação institucional, auxiliando na produção de conteúdo para diversos canais, suporte a eventos e rotinas administrativas do setor. Foco na comunicação clara e eficaz para públicos internos e externos.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Downloads -->
+        <section id="downloads" class="downloads-section">
+            <div class="container">
+                <h2>Downloads</h2>
+                <div class="downloads-list">
+                    <div class="download-item">
+                        <h3 class="download-title">Currículo (CV)</h3>
+                        <p class="download-description">Faça o download do meu currículo completo para mais detalhes sobre minha formação e experiência profissional.</p>
+                        <!-- ATENÇÃO: Substitua 'caminho/para/seu_curriculo.pdf' pela URL real do seu currículo -->
+                        <a href="caminho/para/seu_curriculo.pdf" download="Helena_Eliodorio_CV.pdf" class="button download-button">
+                            <i class="fa-solid fa-file-arrow-down"></i> Download CV
+                        </a>
+                    </div>
+                    <div class="download-item">
+                        <h3 class="download-title">Carta de Recomendação</h3>
+                        <p class="download-description">Baixe a carta de recomendação que atesta minhas habilidades e desempenho.</p>
+                        <!-- ATENÇÃO: Substitua 'caminho/para/sua_carta_recomendacao.pdf' pela URL real da sua carta -->
+                        <a href="caminho/para/sua_carta_recomendacao.pdf" download="Helena_Eliodorio_Carta_Recomendacao.pdf" class="button download-button">
+                            <i class="fa-solid fa-file-arrow-down"></i> Download Carta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Contato -->
+        <section id="contato" class="contact-section">
+            <div class="container">
+                <h2>Entre em Contato</h2>
+                <div class="contact-list">
+                    <div class="contact-item">
+                        <i class="icon fa-brands fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/helenaeliodorio/" target="_blank" rel="noopener noreferrer">
+                            LinkedIn
+                        </a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="icon fa-solid fa-envelope"></i>
+                        <a href="mailto:seu.email@example.com">
+                            email@.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Agradecimento e Aguarda Contato -->
+        <section id="agradecimento" class="gratitude-section">
+            <div class="container">
+                <h2>Obrigada pela Visita!</h2>
+                <p>
+                    Agradeço imensamente por dedicar seu tempo para conhecer um pouco mais sobre minha jornada profissional e acadêmica.
+                    Estou sempre em busca de novos desafios e oportunidades para aplicar meus conhecimentos em Publicidade e Propaganda.
+                    Sinta-se à vontade para entrar em contato através das opções acima. Será um prazer conectar!
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">
+            <!-- Usando o mesmo placeholder do logo do cabeçalho -->
+            <img src="/imagens/logo.png" alt="Logo Helena Eliodorio">
+        </div>
+        <p>&copy; 2025 Helena Eliodorio. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
