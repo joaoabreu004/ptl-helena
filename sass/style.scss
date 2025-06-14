@@ -1,0 +1,164 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exile&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exile&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+@import 'reset_css.scss';
+
+
+
+// Definição de cores como variáveis
+$cor-clara: #F8F4E1;
+$cor-media-clara: #AF8F6F;
+$cor-media-escura: #74512D;
+$cor-escura: #543310;
+
+
+
+
+body {
+  font-family: 'Libre Baskerville';
+  background-color: $cor-clara;
+  color: #333;
+  text-align: center;
+}
+
+header {
+   background-color: $cor-escura; /* Usando a cor mais escura para o fundo */
+    color: $cor-clara; /* Usando a cor mais clara para o texto */
+    padding: 1.5rem 2rem;
+    border-radius: 0;
+    margin-bottom: 0;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .logo {
+        font-family: $fonte-principal;
+        font-weight: bold;
+        font-size: 1.8rem;
+        text-decoration: none;
+        color: $cor-clara; /* Texto do logo na cor clara */
+    }
+
+     .main-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+
+    .main-nav li {
+        margin-left: 1.5rem;
+    }
+
+    .main-nav a {
+        color: $cor-clara;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out; /* Transição para a borda também */
+        padding-bottom: 2px; /* Adiciona um pequeno espaço abaixo do texto para a borda */
+        border-bottom: 2px solid transparent; /* Borda transparente por padrão */
+
+        &:hover {
+            color: lighten($cor-clara, 30%); /* Clareia mais no hover */
+            border-bottom-color: $cor-clara; /* Mostra a borda inferior no hover */
+        }
+
+        &:active {
+            color: darken($cor-clara, 30%); /* Escurece um pouco ao clicar */
+            border-bottom-color: darken($cor-clara, 30%); /* Escurece a borda ao clicar */
+        }
+    }
+}
+
+main {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+}
+
+footer {
+  margin-top: 3rem;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+
+.hero-with-image {
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    padding: 80px 2rem; /* Aumentei o padding vertical para mais respiro */
+    width: 100%; /* Preenche toda a largura */
+    background-color: $cor-clara; /* Usando uma das cores da sua paleta */
+    text-align: center;
+
+    .profile-image-section {
+        margin-bottom: 40px; /* Mais espaço entre a foto e o texto */
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        img {
+           width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #eee;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25); /* Aumentei os valores da sombra */
+        }
+    }
+
+    .hero-section {
+        .container .hero-content h1 {
+            font-size: 3.5rem; /* Título maior */
+            margin-bottom: 1rem;
+            color: $cor-escura; /* Usando outra cor da sua paleta */
+            font-weight: bold; 
+        }
+
+        .container .hero-content p.lead {
+            font-size: 1.2rem;
+            color: $cor-media-escura; /* Outra cor da sua paleta para o texto */
+            line-height: 1.8; /* Melhor espaçamento entre linhas */
+            margin-bottom: 2rem;
+            max-width: 700px; /* Limita a largura do texto para melhor leitura */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .container .hero-content .button {
+            display: inline-block;
+            background-color: $cor-escura;
+            color: $cor-clara;
+            padding: 14px 30px; /* Botão maior */
+            text-decoration: none;
+            border-radius: 10px; /* Bordas mais arredondadas */
+            font-weight: 500;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+            &:hover {
+                background-color: darken($cor-escura, 10%);
+                transform: scale(1.02); /* Efeito de leve aumento no hover */
+            }
+        }
+    }
+
+    /* Remove a media query para telas maiores, já que a ordem é vertical */
+    @media (max-width: 768px) {
+        .container .hero-content h1 {
+            font-size: 2.8rem;
+        }
+
+        .container .hero-content p.lead {
+            font-size: 1.1rem;
+        }
+    }
+}
